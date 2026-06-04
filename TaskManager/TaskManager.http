@@ -1,6 +1,49 @@
-@TaskManager_HostAddress = http://localhost:5257
+@host = http://localhost:5257
 
-GET {{TaskManager_HostAddress}}/weatherforecast/
-Accept: application/json
+### Registrar usuário
+POST {{host}}/auth/register
+Content-Type: application/json
 
-###
+{
+  "name": "Guilherme Silva",
+  "email": "gui@email.com",
+  "password": "123456"
+}
+
+### Login
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "gui@email.com",
+  "password": "123456"
+}
+
+### Criar task (substitui SEU_TOKEN pelo token do login)
+POST {{host}}/tasks
+Content-Type: application/json
+Authorization: Bearer SEU_TOKEN
+
+{
+  "title": "Estudar EF Core",
+  "description": "Ver diferença entre EF Core e Dapper na prática",
+  "dueDate": "2026-06-10T00:00:00",
+  "userId": 1
+}
+
+### Listar tasks do usuário
+GET {{host}}/tasks/user/1
+Authorization: Bearer SEU_TOKEN
+
+### Resumo Dapper
+GET {{host}}/tasks/user/1/summary
+Authorization: Bearer SEU_TOKEN
+
+### Atualizar status
+PUT {{host}}/tasks/1/status
+Content-Type: application/json
+Authorization: Bearer SEU_TOKEN
+
+{
+  "newStatus": "InProgress"
+}

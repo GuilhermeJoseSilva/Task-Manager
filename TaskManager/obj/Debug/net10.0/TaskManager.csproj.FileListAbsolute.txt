@@ -151,3 +151,4 @@ C:\Projects\Task_Manager_net\TaskManager\obj\Debug\net10.0\refint\TaskManager.dl
 C:\Projects\Task_Manager_net\TaskManager\obj\Debug\net10.0\TaskManager.pdb
 C:\Projects\Task_Manager_net\TaskManager\obj\Debug\net10.0\TaskManager.genruntimeconfig.cache
 C:\Projects\Task_Manager_net\TaskManager\obj\Debug\net10.0\ref\TaskManager.dll
+C:\Projects\Task_Manager_net\TaskManager\obj\Debug\net10.0\TaskManager.sourcelink.json

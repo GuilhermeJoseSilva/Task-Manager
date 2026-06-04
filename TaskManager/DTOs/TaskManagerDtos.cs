@@ -49,12 +49,13 @@ public record TaskResponseDto(
 );
 
 // Dapper report
-public record TaskSummaryDto(
-    string UserName,
-    string UserEmail,
-    int TotalTasks,
-    int Pending,
-    int InProgress,
-    int Completed,
-    int Overdue
-);
+public class TaskSummaryDto
+{
+    public string UserName { get; set; } = string.Empty;
+    public string UserEmail { get; set; } = string.Empty;
+    public int TotalTasks { get; set; }
+    public int Pending { get; set; }
+    public int InProgress { get; set; }
+    public int Completed { get; set; }
+    public int Overdue { get; set; }
+}

@@ -79,18 +79,18 @@ public class TaskRepository : ITaskRepository
         await using var connection = new NpgsqlConnection(connectionString);
 
         var sql = @"
-            SELECT 
-                u.""Name""          AS UserName,
-                u.""Email""         AS UserEmail,
-                COUNT(t.""Id"")     AS TotalTasks,
-                SUM(CASE WHEN t.""Status"" = 'Pending'    THEN 1 ELSE 0 END) AS Pending,
-                SUM(CASE WHEN t.""Status"" = 'InProgress' THEN 1 ELSE 0 END) AS InProgress,
-                SUM(CASE WHEN t.""Status"" = 'Completed'  THEN 1 ELSE 0 END) AS Completed,
-                SUM(CASE WHEN t.""Status"" = 'Overdue'    THEN 1 ELSE 0 END) AS Overdue
-            FROM ""Users"" u
-            LEFT JOIN ""Tasks"" t ON t.""UserId"" = u.""Id""
-            WHERE u.""Id"" = @UserId
-            GROUP BY u.""Name"", u.""Email""";
+                SELECT 
+                    u.""Name""          AS UserName,
+                    u.""Email""         AS UserEmail,
+                    COUNT(t.""Id"")     AS TotalTasks,
+                    SUM(CASE WHEN t.""Status"" = 'Pending'    THEN 1 ELSE 0 END) AS Pending,
+                    SUM(CASE WHEN t.""Status"" = 'InProgress' THEN 1 ELSE 0 END) AS InProgress,
+                    SUM(CASE WHEN t.""Status"" = 'Completed'  THEN 1 ELSE 0 END) AS Completed,
+                    SUM(CASE WHEN t.""Status"" = 'Overdue'    THEN 1 ELSE 0 END) AS Overdue
+                FROM ""Users"" u
+                LEFT JOIN ""Tasks"" t ON t.""UserId"" = u.""Id""
+                WHERE u.""Id"" = @UserId
+                GROUP BY u.""Name"", u.""Email""";
 
         var result = await connection.QueryAsync<TaskSummaryDto>(sql, new { UserId = userId });
 
